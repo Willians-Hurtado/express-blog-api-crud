@@ -1,7 +1,7 @@
-const posts = require('../data/post')
+
 
 function index(req, res) {
-    res.json(posts);
+    res.send('show all posts');
 
 }
 
