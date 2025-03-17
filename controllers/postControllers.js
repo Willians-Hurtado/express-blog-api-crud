@@ -32,8 +32,29 @@ function store(req, res) {
 }
 
 function update(req, res) {
-    res.send(`update the post with id: ${req.params.id}`)
-}
+    
+    const id = parseInt(req.params.id)
+  
+    const post = posts.find(post => post.id === id);
+    
+    if (!post) {
+    res.status(404);
+    return res.json({
+    error: "Not Found",
+    message: "post non trovato"
+    })
+    }
+   
+    post.title = req.body.title;
+    post.slug = req.body.slug;
+    post.content = req.body.content;
+    post.image = req.body.image;
+    post.tags = req.body.tags;
+ 
+    console.log(posts)
+    
+    res.json(post);
+    }
 
 function modify(req, res) {
     res.send(`modify the post with id: ${req.params.id}`)

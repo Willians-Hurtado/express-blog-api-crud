@@ -10,6 +10,10 @@ app.post('/', (req, res) => {
     
 })
 
+app.put('/:id', (req, res) => {
+    res.send('Modifica integrale della pizza ' + req.params.id);
+});
+
 app.listen(port, () => {
     console.log(`server running on http://localhost:${port}`);
     
