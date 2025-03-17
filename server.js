@@ -3,6 +3,13 @@ const app = express();
 const port = 3009;
 const postsRouter = require('./routers/posts')
 
+app.use(express.json())
+
+app.post('/', (req, res) => {
+    console.log(req.body);
+    
+})
+
 app.listen(port, () => {
     console.log(`server running on http://localhost:${port}`);
     
