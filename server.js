@@ -3,6 +3,8 @@ const app = express();
 const port = 3009;
 const postsRouter = require('./routers/posts')
 const error_404 = require('./middlewares/error_404')
+const serverError = require('./middlewares/serverError')
+
 app.use(express.json())
 
 app.post('/', (req, res) => {
@@ -27,6 +29,7 @@ app.get('/', (req, res) => {
 app.use('/api/v1/posts', postsRouter)
 
 
+app.use(serverError);
 app.use(error_404);
 
 
