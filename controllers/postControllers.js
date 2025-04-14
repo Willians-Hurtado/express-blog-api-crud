@@ -71,7 +71,7 @@ function modify(req, res) {
 }
 
 const destroy = (req, res) => {
-    const postId = Number(req.params.id)
+    /* const postId = Number(req.params.id)
 
     const post = posts.find(post => post.id === postId)
     console.log(post);
@@ -86,7 +86,15 @@ const destroy = (req, res) => {
     posts.splice(posts.indexOf(post), 1)
     console.log(post);
     res.sendStatus(204)
+ */
 
+    const { id } = req.params;
+
+    connection.query('DELETE FROM posts WHERE id = ?', [id], (err) => {
+
+        if (err) return res.status(500).json({ error: 'Failed to delete post' });
+        res.sendStatus(204)
+    })
 }
 
 module.exports = {
