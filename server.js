@@ -4,12 +4,24 @@ const port = 3009;
 const postsRouter = require('./routers/posts')
 const error_404 = require('./middlewares/error_404')
 const serverError = require('./middlewares/serverError')
+const cors = require("cors")
+
+app.use(
+    express.static('public')
+);
+
+
+
+
+app.use(cors({
+    origin: 'http://localhost:5173'
+}));
 
 app.use(express.json())
 
 app.post('/', (req, res) => {
     console.log(req.body);
-    
+
 })
 
 app.put('/:id', (req, res) => {
@@ -18,15 +30,15 @@ app.put('/:id', (req, res) => {
 
 app.listen(port, () => {
     console.log(`server running on http://localhost:${port}`);
-    
+
 })
 
 app.get('/', (req, res) => {
     res.send('welcome to our blog')
-    
+
 })
 
-app.use('/api/v1/posts', postsRouter)
+app.use('/api/v1/posts', postsRouter);
 
 
 app.use(serverError);
